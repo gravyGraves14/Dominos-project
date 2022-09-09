@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8a8b1d41-20ef-4656-a368-4305221436aa" name="Changes" comment="Adding this readme">
-      <change afterPath="$PROJECT_DIR$/src/Domino.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Yard.java" afterDir="false" />
+    <list default="true" id="8a8b1d41-20ef-4656-a368-4305221436aa" name="Changes" comment="Just seeing if I can still commit and push after changing default branch">
+      <change afterPath="$PROJECT_DIR$/src/dominos/Yard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Domino.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dominos/Domino.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dominos/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Yard.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +50,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1662673238423</updated>
-      <workItem from="1662673240130" duration="5265000" />
+      <workItem from="1662673240130" duration="6035000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1662673414268</created>
@@ -85,7 +87,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662673856775</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Just seeing if I can still commit and push after changing default branch">
+      <created>1662682695735</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1662682695735</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,6 +115,7 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Adding this readme" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding this readme" />
+    <MESSAGE value="Just seeing if I can still commit and push after changing default branch" />
+    <option name="LAST_COMMIT_MESSAGE" value="Just seeing if I can still commit and push after changing default branch" />
   </component>
 </project>

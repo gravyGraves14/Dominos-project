@@ -1,3 +1,5 @@
+package dominos;
+
 public class Domino {
     private int first;
     private int second;
