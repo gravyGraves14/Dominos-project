@@ -3,6 +3,7 @@ package dominos;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public class Yard {
 
@@ -42,12 +43,37 @@ public class Yard {
     Domino D26 = new Domino(5, 6);
 
     Domino D27 = new Domino(6, 6);
+    
+    int numOfElements = 7;
+    
+    List<Integer> aList = new ArrayList<>();
 
-    public void addDom() {
+    
+
+    /*When I called yard.addDom() in main it didn't work, and it made me
+    * chanve addDom() from void to return a list to work. That managed to work
+    * but like I said in the main class, it is only returning the addresses*/
+    public List<Domino> addDom() {
         List<Domino> myList = new ArrayList<>();
         Collections.addAll(myList, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10,
                 D11, D12, D13, D14, D15, D16, D17, D18, D19, D20, D21, D22, D23, D24, D25, D26, D27);
+        return myList;
     }
+    
+    public List<Domino> getRandomElement(List<Domino> list, int totalItems) {
+
+        Random rand = new Random();
+        
+        List<Domino> newList = new ArrayList<>();
+        for (int i = 0; i < totalItems; i++) {
+            
+            int randomIndex = rand.nextInt(list.size());
+            newList.add(list.get(randomIndex));
+        }
+        return newList;
+    }
+
+
 
 }
 
