@@ -8,7 +8,12 @@ import java.util.Random;
 public class Yard {
 
     //Zero set
+    List<Domino> alist = new ArrayList<>();
+    public Yard(List<Domino> aList) {
 
+
+
+        this.alist = aList;
     Domino D0 = new Domino(0, 0);
     Domino D1 = new Domino(0, 1);
     Domino D2 = new Domino(0, 2);
@@ -43,35 +48,59 @@ public class Yard {
     Domino D26 = new Domino(5, 6);
 
     Domino D27 = new Domino(6, 6);
-    
-    int numOfElements = 7;
-    
-    List<Integer> aList = new ArrayList<>();
 
+        Collections.addAll(aList,D0,D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,
+    D11,D12,D13,D14,D15,D16,D17,D18,D19,D20,D21,D22,D23,D24,D25,D26,D27);
+
+}
     
 
     /*When I called yard.addDom() in main it didn't work, and it made me
     * chanve addDom() from void to return a list to work. That managed to work
     * but like I said in the main class, it is only returning the addresses*/
-    public List<Domino> addDom() {
+   /* public List<Domino> addDom() {
         List<Domino> myList = new ArrayList<>();
-        Collections.addAll(myList, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10,
+        Collections.addAll(myList, D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10,
                 D11, D12, D13, D14, D15, D16, D17, D18, D19, D20, D21, D22, D23, D24, D25, D26, D27);
+
+        String listString = myList.toString();
+
         return myList;
-    }
+    }*/
     
-    public List<Domino> getRandomElement(List<Domino> list, int totalItems) {
+    public List<Domino> getRandomElement(List<Domino> alist, int totalItems) {
 
         Random rand = new Random();
-        
+
         List<Domino> newList = new ArrayList<>();
         for (int i = 0; i < totalItems; i++) {
-            
-            int randomIndex = rand.nextInt(list.size());
-            newList.add(list.get(randomIndex));
+
+            int randomIndex = rand.nextInt(alist.size());
+            newList.add(alist.get(randomIndex));
+
+            alist.remove(randomIndex);
+           // System.out.println("Index size is: " + list.size() + " ");
+
         }
+//        System.out.println(newList);
+//        System.out.println(alist);
         return newList;
     }
+
+    /*Trying to find a way to delete the initial 7 items that each player
+    * get at the very beginning. Still don't know if this is the best place
+    * for it. Not even sure if it will work*/
+     /*public boolean calledDoms() {
+
+        int totalItems = 7;
+
+        if(calledDoms()) {
+            alist.remove(getRandomElement(alist, totalItems));
+            System.out.println(alist);
+
+        }
+        return false;
+    }*/
 
 
 

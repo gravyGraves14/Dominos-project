@@ -9,4 +9,9 @@ public class Domino {
         this.second = second;
     }
 
+    public String toString() {
+        return "[" +first + "  " + second + "]";
+
+    }
+
 }
