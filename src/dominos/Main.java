@@ -1,5 +1,6 @@
 package dominos;
 
+import java.sql.PseudoColumnUsage;
 import java.util.*;
 
 public class Main {
@@ -7,16 +8,14 @@ public class Main {
 
     static List<Domino> myList = new ArrayList<>();
     static List<Domino> pList = new ArrayList<>();
-    static List<Domino> cList = new ArrayList<>();
+    static Deque<Domino> cList = new ArrayDeque<>();
 
-    static List<Domino> pPlaceList = new ArrayList<>();
-    static List<Domino> cPlaceList = new ArrayList<>();
+    static Deque<Domino> pPlaceList = new ArrayDeque<>();
+    static Deque<Domino> cPlaceList = new ArrayDeque<>();
 
     static int first;
     static int second;
 
-    static Domino one = new Domino(first, second);
-    static Domino two = new Domino(first, second);
 
 
     public static void main(String[] args) {
@@ -90,6 +89,14 @@ public class Main {
 
                 case 'p' -> {
                      if (playerTrayList(pList)) {
+
+                         /*System.out.println("Rotate y/n");
+                         if(input != 'n') {
+                             for(Domino o : pPlaceList) {
+                                 o.g
+                             }
+                         }*/
+
                         // getCompDom(cList, pPlaceList);
                          //Working with this on plyaer Class
                          //matching(one, two);
@@ -97,7 +104,6 @@ public class Main {
                          System.out.print("Dom 1 Element 1: ");
                          myFirst(pPlaceList, cList);
                          System.out.println();
-                         System.out.println("Second Element is: " + cList.equals(one.getFirst()));
                          //System.out.println(pList.get(one.getFirst()));
                      }
                 }
@@ -116,22 +122,40 @@ public class Main {
 
     public static boolean playerTrayList(List<Domino> pList) {
         int i;
-        int j;
+        char input;
+
 
         System.out.println("Which Domino?");
         Scanner scanner = new Scanner(System.in);
+        Scanner cScanner = new Scanner(System.in);
 
-            for (i = 0; i < pList.size(); i++) {
-                pList.get(i).getSecond();
-            }
+            /*for (i = 0; i < pList.size(); i++) {
+                pList.get(i);
+            }*/
             i = scanner.nextInt();
-
             pPlaceList.add(pList.remove(i));
+
+            System.out.println("Rotate y/n");
+            input = scanner.next().charAt(0);
+            if(input == 'y') {
+                for(Domino p : pPlaceList) {
+                    /*int one = p.getFirst();
+                    int two = p.getSecond();
+                    int temp = one;
+                    one = two;
+                    two = temp;*/
+
+                    p.Swap();
+
+                }
+
+            }
 
         return true;
 
 
     }
+
 
 
    /* public static void computerTrayList(List<Domino> cList) {
@@ -163,25 +187,33 @@ public class Main {
 
     }*/
 
-    public static void myFirst(List<Domino> pPlaceList, List<Domino> cList) {
-        int count = 0;
-        for(Domino o : pPlaceList) {
-            o.getSecond();
-            for(Domino c : cList) {
-                    System.out.print(" [" + o.getFirst() + "] ");
-                    count++;
-                    if (c.getFirst() == o.getSecond() && count != 0) {
+    public static void myFirst(Deque<Domino> pPlaceList, Deque<Domino> cList) {
+
+        for(Domino c : cList) {
+            //c.getFirst();
+            for(Domino p : pPlaceList) {
+                  System.out.print(" [" + p.getFirst() + "] ");
+                    if (c.getFirst() == p.getSecond()) {
+
                         cList.remove(c);
                         cPlaceList.add(c);
-                    break;
-                }
+                        return;
+
+                } else if(c.getFirst() != p.getSecond() && c.getSecond() == p.getSecond()) {
+
+                        c.Swap();
+                        cList.remove(c);
+                        cPlaceList.add(c);
+                        return;
+                    }
+                   // break;
 
             }
-            //break;
             /*With this break above blocked out, it sort of
             * works but i'll jump in increments of two sometimes three*/
         }
     }
+
 
     /*This method will determine if the boneyard is empty.
      * If it is, the game will end. I need more fucntionallity in here
