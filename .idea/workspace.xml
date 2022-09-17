@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8a8b1d41-20ef-4656-a368-4305221436aa" name="Changes" comment="This is after seeing whether I could pull random dominos">
-      <change afterPath="$PROJECT_DIR$/src/dominos/Player.java" afterDir="false" />
+    <list default="true" id="8a8b1d41-20ef-4656-a368-4305221436aa" name="Changes" comment="Finally getting list of dominos to update properly. Now I need to create logic for the game.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dominos/Domino.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dominos/Domino.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dominos/Environment.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dominos/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dominos/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dominos/PlayerRules.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dominos/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dominos/Player.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dominos/Yard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dominos/Yard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -44,9 +42,22 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dominos.Main" />
+      <module name="Dominos" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dominos.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Yard" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dominos.Yard" />
       <module name="Dominos" />
       <extension name="coverage">
         <pattern>
@@ -61,6 +72,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Yard" />
       </list>
     </recent_temporary>
   </component>
@@ -78,7 +90,12 @@
       <workItem from="1663097229999" duration="4577000" />
       <workItem from="1663116415776" duration="16022000" />
       <workItem from="1663176598287" duration="305000" />
-      <workItem from="1663208933592" duration="2009000" />
+      <workItem from="1663208933592" duration="11658000" />
+      <workItem from="1663264815701" duration="4255000" />
+      <workItem from="1663272017344" duration="7230000" />
+      <workItem from="1663282599276" duration="71000" />
+      <workItem from="1663304555149" duration="4230000" />
+      <workItem from="1663379584496" duration="18428000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1662673414268</created>
@@ -143,7 +160,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662783683926</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Finally getting list of dominos to update properly. Now I need to create logic for the game.">
+      <created>1663211193647</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1663211193647</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -167,6 +191,17 @@
     <MESSAGE value="Just seeing if I can still commit and push after changing default branch" />
     <MESSAGE value="Commit after package" />
     <MESSAGE value="This is after seeing whether I could pull random dominos" />
-    <option name="LAST_COMMIT_MESSAGE" value="This is after seeing whether I could pull random dominos" />
+    <MESSAGE value="Finally getting list of dominos to update properly. Now I need to create logic for the game." />
+    <option name="LAST_COMMIT_MESSAGE" value="Finally getting list of dominos to update properly. Now I need to create logic for the game." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.IllegalArgumentException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
