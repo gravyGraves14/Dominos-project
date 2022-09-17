@@ -26,7 +26,7 @@ public class Main {
          * me the address of them. So it is sort of working but I need to find a way to make it give me their
          * numbers. */
 
-       Yard myYard = new Yard(myList);
+        Yard myYard = new Yard(myList);
         int numElements = 7;
         int sameNum = 7;
 
@@ -54,13 +54,16 @@ public class Main {
 
 
         pList.addAll(player.tray(myList, numElements));
-       cList.addAll(player.computerTray(myList, sameNum));
+        cList.addAll(player.computerTray(myList, sameNum));
 
         int addOne = 1;
+
+        //getDominoF(myList);
 
         while (!gameOver(myList)) {
 
             System.out.println("Computer has " + cList.size() + " dominos");
+            System.out.println("Computer Tray" + cList);
             System.out.println("Boneyard contains " + myList.size() + " dominos");
             System.out.println();
             System.out.println("    " + cPlaceList);
@@ -74,8 +77,8 @@ public class Main {
 
 
             /*if(your turn) {
-            then enter this switch statement
-            }*/
+            then enter this switch statement*/
+
 
             System.out.println("[p] Play Domino");
             System.out.println("[d] Draw from boneyard");
@@ -86,25 +89,30 @@ public class Main {
             switch (input) {
 
                 case 'p' -> {
-                     if(playerTrayList(pList)) {
-
-                         /*if(playerTrayList(pList, one, two))  Working with this on plyaer Class */
+                     if (playerTrayList(pList)) {
+                        // getCompDom(cList, pPlaceList);
+                         //Working with this on plyaer Class
                          //matching(one, two);
-                         computerTrayList(cList);
-                         System.out.println("First Element is: " + pList.equals(one.getFirst()));
+                         //computerTrayList(cList);
+                         System.out.print("Dom 1 Element 1: ");
+                         myFirst(pPlaceList, cList);
+                         System.out.println();
                          System.out.println("Second Element is: " + cList.equals(one.getFirst()));
-                         System.out.println(pList.get(one.getFirst()));
+                         //System.out.println(pList.get(one.getFirst()));
                      }
                 }
                 case 'd' -> {
                     System.out.println("Drawing from Boneyard");
-                   // pList.addAll(player.tray(myList, addOne)); Working with this on player
+                    pList.addAll(player.tray(myList, addOne)); //Working with this on player
+                    cList.addAll(player.computerTray(myList, addOne));
                 }
                 case 'q' -> System.exit(0);
 
             }
         }
     }
+
+
 
     public static boolean playerTrayList(List<Domino> pList) {
         int i;
@@ -113,57 +121,67 @@ public class Main {
         System.out.println("Which Domino?");
         Scanner scanner = new Scanner(System.in);
 
-        for (i = 0; i < pList.size(); i++) {
-            pList.get(i).equals(one.getSecond());
-        }
-        i = scanner.nextInt();
-
-        //System.out.println(pList.get(i));//This line is just testing to see correct index
-        pPlaceList.add(pList.remove(i));
-        //System.out.println(pList.get(i).getFirst());
-
-       /*for(j = 0; j < cList.size() - 1; j++) {
-            cList.get(j).equals(two.getFirst());
-
-            if (cList.get(j).equals(pPlaceList)) {
-                cPlaceList.add(cList.remove(j));
+            for (i = 0; i < pList.size(); i++) {
+                pList.get(i).getSecond();
             }
-        }*/
+            i = scanner.nextInt();
+
+            pPlaceList.add(pList.remove(i));
+
         return true;
 
 
     }
 
 
-    public static void computerTrayList(List<Domino> cList) {
+   /* public static void computerTrayList(List<Domino> cList) {
         int j;
             Random rand = new Random();
             int randIndex = rand.nextInt(cList.size());
             cList.get(randIndex);
             cPlaceList.add(cList.remove(randIndex));
 
-    }
+    }*/
 
 
-
-
-    /*public static void compare(List<Domino> pPlaceList, List<Domino> cList) {
+    /*public static int getCompDom(List<Domino> cList, List<Domino> pPlaceList) {
         int i;
-        int j;
-
-
-        for (i = 0; i < pPlaceList.size() - 1; i++) {
-            pPlaceList.get(i).getSecond();
-            for (j = 0; j < cList.size() - 1; j++) {
-                cList.get(j).getFirst();
+        for(Domino p : pPlaceList) {
+            for(i = 0; i < cList.size(); i++) {
+                 for (Domino c : cList) {
+                if (c.getFirst() == p.getSecond()) {
+                    cList.get(i).getSecond();
+                    cPlaceList.add(cList.remove(i));
+                }
+                }
             }
-            if (pPlaceList.get(i).getSecond() == cList.get(j).getFirst()) {
-                cPlaceList.add(cList.remove(j));
         }
 
-        }
+
+        return 0;
+        //return aList.get(i).getFirst();
 
     }*/
+
+    public static void myFirst(List<Domino> pPlaceList, List<Domino> cList) {
+        int count = 0;
+        for(Domino o : pPlaceList) {
+            o.getSecond();
+            for(Domino c : cList) {
+                    System.out.print(" [" + o.getFirst() + "] ");
+                    count++;
+                    if (c.getFirst() == o.getSecond() && count != 0) {
+                        cList.remove(c);
+                        cPlaceList.add(c);
+                    break;
+                }
+
+            }
+            //break;
+            /*With this break above blocked out, it sort of
+            * works but i'll jump in increments of two sometimes three*/
+        }
+    }
 
     /*This method will determine if the boneyard is empty.
      * If it is, the game will end. I need more fucntionallity in here

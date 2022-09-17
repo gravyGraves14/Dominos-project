@@ -47,7 +47,7 @@ public class Yard {
     //Zero set
 
 
- /*public static List<Domino> add() {
+ /*public List<Domino> add() {
     *//*aList.add(D0);
     aList.add(D1);
     aList.add(D2);
@@ -157,7 +157,7 @@ public class Yard {
             int randomIndex = rand.nextInt(aList.size());
             newList.add(aList.get(randomIndex));
 
-           // aList.remove(randomIndex);
+            aList.remove(randomIndex);
             //System.out.println("Index size is: " + list.size() + " ");
 
         }
@@ -167,7 +167,7 @@ public class Yard {
     }
 
 
-    public static Domino getDominoF(List<Domino> aList) {
+    /*public static Domino getDominoF(List<Domino> aList) {
         Domino one = new Domino(first, second);
         int i = 0;
         int count = 0;
@@ -192,9 +192,9 @@ public class Yard {
         return one;
         //return aList.get(i).getFirst();
 
-    }
+    }*/
 
-    public static int getDominoS(List<Domino> aList) {
+  /*  public static int getDominoS(List<Domino> aList) {
         int i;
         for (i = 0; i < aList.size() - 1; i++) {
             if(aList.get(i).getSecond() == aList.get(i).getFirst()) {
@@ -204,9 +204,9 @@ public class Yard {
             }
         }
         return aList.get(i).getSecond();
-    }
+    }*/
 
-    public static void main(String[] args) {
+   /* public static void main(String[] args) {
 
 
         //add();
@@ -214,7 +214,7 @@ public class Yard {
         getDominoF(aList);
         System.out.println();
        //getDominoS(aList);
-    }
+    }*/
 
     /*Trying to find a way to delete the initial 7 items that each player
     * get at the very beginning. Still don't know if this is the best place

@@ -16,6 +16,7 @@ public class Player {
     Yard pYard = new Yard(pList);
 
 
+
     /*Figure this out before moving on*/
     public List<Domino> tray(List<Domino> pList, int amount) {
         List<Domino> p1L = new ArrayList<>();
@@ -25,6 +26,7 @@ public class Player {
     }
 
     public List<Domino> computerTray(List<Domino> pList, int amount) {
+
         List<Domino> cList = new ArrayList<>();
         cList.addAll(pYard.getRandomElement(pList, amount));
 
