@@ -15,6 +15,7 @@ public class Main {
 
     static List<Domino> putDown = new ArrayList<>();
 
+    static Player player = new Player();
     static int first;
     static int second;
 
@@ -32,9 +33,9 @@ public class Main {
 
 
         Scanner scnr = new Scanner(System.in);
-        Scanner numScan = new Scanner(System.in);
 
-        Player player = new Player();
+
+
         Player comp = new Player();
 
         System.out.println("Dominos!");
@@ -47,7 +48,8 @@ public class Main {
         pList.addAll(player.tray(myList, numElements));
         cList.addAll(player.computerTray(myList, sameNum));
 
-        theGame(putDown);
+       // theGame(putDown);
+        System.out.println();
 
 
         int addOne = 1;
@@ -61,90 +63,107 @@ public class Main {
             System.out.println();
 
             theGame(putDown);
-
             System.out.println();
-        System.out.println("Tray: " + pList);
+
+            System.out.println("Tray: " + pList);
 
 
             /*if(your turn) {
             then enter this switch statement*/
 
-        System.out.println("[p] Play Domino");
-        System.out.println("[d] Draw from boneyard");
-        System.out.println("[q] Quit");
+            System.out.println("[p] Play Domino");
+            System.out.println("[d] Draw from boneyard");
+            System.out.println("[q] Quit");
 
-        input = scnr.next().charAt(0);
+            input = scnr.next().charAt(0);
 
-        switch (input) {
 
-            case 'p' -> {
-                if (playerTrayList(pList)) {
+            switch (input) {
 
-                    System.out.print("Dom 1 Element 1: ");
-                    myFirst(putDown, cList);
-                    System.out.println();
-                    System.out.println("Your score is: " + trackScore(pPlaceList));
+                case 'p' -> {
+                    if (playerTrayList(pList)) {
+
+
+                        myFirst(putDown, cList);
+                        System.out.println();
+                        System.out.println("Your score is: " + trackScore(pPlaceList));
+                    }
                 }
-            }
-            case 'd' -> {
-                System.out.println("Drawing from Boneyard");
-                pList.addAll(player.tray(myList, addOne)); //Working with this on player
-                cList.addAll(player.computerTray(myList, addOne));
-            }
-            case 'q' -> System.exit(0);
+                case 'd' -> {
+                    System.out.println("Drawing from Boneyard");
+                    pList.addAll(player.tray(myList, addOne)); //Working with this on player
+                }
+                case 'q' -> System.exit(0);
 
+            }
+            System.out.println();
         }
     }
-}
 
 
     public static boolean playerTrayList(List<Domino> pList) {
         int i;
         char input;
 
+
         /*Might need to change putDown back to pPlaceList*/
 
         System.out.println("Which Domino?");
         Scanner scanner = new Scanner(System.in);
-        Scanner cScanner = new Scanner(System.in);
+        Scanner numScan = new Scanner(System.in);
+        Scanner nextScan =  new Scanner(System.in);
 
-            for (i = 0; i < pList.size(); i++) {
+
+
+
+            for (i = 0; i < pList.size() - 1; i++) {
                 //pList.get(i);
 
                 i = scanner.nextInt();
                 System.out.println("Left or right");
                 input = scanner.next().charAt(0);
+
                 if (input == 'l') {
-                    putDown.add(0, pList.remove(i));
-                } else if(input == 'r') {
-                    putDown.add(pList.remove(i));
+                    System.out.println("Rotate y/n");
+                    input = numScan.next().charAt(0);
+                    if (input == 'y') {
+                        pList.get(i).Swap();
+                        putDown.add(0, pList.remove(i));
+                    } else {
+                        putDown.add(0, pList.remove(i));
+                    }
                 }
-
+                if (input == 'r') {
+                    System.out.println("Rotate y/n");
+                    input = nextScan.next().charAt(0);
+                    if (input == 'y') {
+                        pList.get(i).Swap();
+                        putDown.add(pList.remove(i));
+                    } else {
+                        putDown.add(pList.remove(i));
+                    }
+                }
+                if(!humanMove(putDown, pList)) {
+                    System.out.println("No valid moves draw");
+                }
                 break;
-                /*System.out.println("Rotate y/n");
-                if(input == 'y') {
-                    pList.get(i).Swap();
-                    //putDown.add(pList.remove(i));
-                }*/
-            }
 
-        System.out.println("Rotate y/n");
-        input = scanner.next().charAt(0);
-            if(input == 'y') {
-                for(Domino p: putDown) {
-                    p.Swap();
-                }
-            }
+        }
+
 
         return true;
     }
 
     public static boolean humanMove(List<Domino> putDown, List<Domino> pList) {
+        int addOne = 1;
         for(int k = 0; k < pList.size() - 1; k++) {
-            if(putDown.get(0).getOne() == pList.get(k).getOne() || (putDown.get(0).getOne() == pList.get(k).getTwo())) {
+            if(putDown.get(0).getOne() == pList.get(k).getOne()) {
                 return true;
-            }
-            if(putDown.get(putDown.size() - 1).getTwo() == pList.get(k).getTwo() || putDown.get(putDown.size() - 1).getTwo() == pList.get(k).getOne()) {
+            } else if (putDown.get(0).getOne() == pList.get(k).getTwo()) {
+                return true;
+            } else if (putDown.get(putDown.size() - 1).getTwo() == pList.get(k).getOne()) {
+                return true;
+            } else if(putDown.get(putDown.size() - 1).getTwo() == pList.get(k).getTwo()) {
                 return true;
             }
         }
@@ -153,10 +172,16 @@ public class Main {
 
     public static boolean compMove(List<Domino> putDown, List<Domino> cList) {
         for(int j = 0; j < cList.size() - 1; j++) {
-            if(putDown.get(0).getOne() == cList.get(j).getOne() || (putDown.get(0).getOne() == cList.get(j).getTwo())) {
+            if(putDown.get(0).getOne() == cList.get(j).getOne() || putDown.get(0).getOne() == 0 || cList.get(j).getOne() == 0) {
                 return true;
             }
-            if(putDown.get(putDown.size() - 1).getTwo() == cList.get(j).getTwo() || putDown.get(putDown.size() - 1).getTwo() == cList.get(j).getOne()) {
+            else if((putDown.get(0).getOne() == cList.get(j).getTwo()) || putDown.get(0).getOne() == 0 || cList.get(j).getTwo() == 0) {
+                return true;
+            }
+            else if(putDown.get(putDown.size() - 1).getTwo() == cList.get(j).getTwo() || putDown.get(putDown.size() - 1).getTwo() == 0 || cList.get(j).getTwo() == 0) {
+                return true;
+            }
+            else if(putDown.get(putDown.size() - 1).getTwo() == cList.get(j).getOne() || putDown.get(putDown.size() - 1).getTwo() == 0 || cList.get(j).getOne() == 0) {
                 return true;
             }
         }
@@ -164,52 +189,32 @@ public class Main {
     }
 
     public static void myFirst(List<Domino> putDown, List<Domino> cList) {
-
-        if(compMove(putDown, cList)) {
+        int addOne = 1;
+        if(!compMove(putDown, cList)) {
+            cList.addAll(player.computerTray(myList, addOne));
+        } else {
             for (int i = 0; i < cList.size() - 1; i++) {
-                if (cList.get(i).getOne() == putDown.get(0).getOne()) {
+                if (putDown.get(0).getOne() == cList.get(i).getOne() ||  putDown.get(0).getOne() == 0 || cList.get(i).getOne() == 0) {
                     cList.get(i).Swap();
                     putDown.add(0, cList.remove(i));
-                } else if (cList.get(i).getTwo() == putDown.get(0).getOne()) {
+                    return;
+                } else if (putDown.get(0).getOne() == cList.get(i).getTwo() ||  putDown.get(0).getOne() == 0 || cList.get(i).getTwo() == 0) {
                     putDown.add(0, cList.remove(i));
-                } else if (putDown.get(putDown.size() - 1).getTwo() == cList.get(i).getOne()) {
+                    return;
+                } else if (putDown.get(putDown.size() - 1).getTwo() == cList.get(i).getOne() ||  putDown.get(putDown.size() - 1).getOne() == 0 || cList.get(i).getOne() == 0) {
                     putDown.add(cList.remove(i));
-                } else if (putDown.get(putDown.size() - 1).getTwo() == cList.get(i).getTwo()) {
+                    return;
+                } else if (putDown.get(putDown.size() - 1).getTwo() == cList.get(i).getTwo() ||  putDown.get(putDown.size() - 1).getOne() == 0 || cList.get(i).getTwo() == 0) {
                     cList.get(i).Swap();
                     putDown.add(cList.remove(i));
+                    return;
                 }
+
+                System.out.println("Computer is placing " + "[" + putDown.get(i).getOne() + " " + putDown.get(i).getTwo());
 
             }
         }
 
-            /*for(Domino p : putDown) {
-                for(Domino c : cList) {
-                    if (c.getOne() == p.getTwo()) {
-                        cList.remove(c);
-                        putDown.add(c);
-                        return true;
-                    }
-
-                    if(c.getOne() == 0 || c.getTwo() == 0 || p.getOne() == 0 || p.getTwo() == 0) {
-                        cList.remove(c);
-                        putDown.add(c);
-                        return true;
-                    }
-
-
-                   if(c.getOne() != p.getTwo() && c.getTwo() == p.getTwo()) {
-
-                        c.Swap();
-                        cList.remove(c);
-                        putDown.add(c);
-                        return true;
-
-                    }
-                }
-
-        }
-
-        return true;*/
     }
 
     public static void theGame(List<Domino> putDown) {
@@ -218,12 +223,13 @@ public class Main {
             if (i % 2 == 0) {
                 System.out.print("[" + putDown.get(i).getOne() + "  " + putDown.get(i).getTwo() + "]");
             }
+            i++;
         }
         System.out.println();
         System.out.print("   ");
-            for(int i = 0; i < putDown.size(); i++) {
-            if(i % 2 == 1) {
-                System.out.print("[" + putDown.get(i).getOne() + "  " + putDown.get(i).getTwo() + "]");
+            for(int j = 0; j < putDown.size(); j++) {
+            if(j % 2 == 1) {
+                System.out.print("[" + putDown.get(j).getOne() + "  " + putDown.get(j).getTwo() + "]");
             }
         }
             System.out.println();
