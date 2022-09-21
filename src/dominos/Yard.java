@@ -87,7 +87,7 @@ public class Yard {
 
     public Yard(List<Domino> aList) {
         this.aList = aList;
-        Domino D0 = new Domino(0, 0);
+        /*Domino D0 = new Domino(0, 0);
          Domino D1 = new Domino(0, 1);
          Domino D2 = new Domino(0, 2);
          Domino D3 = new Domino(0, 3);
@@ -119,7 +119,7 @@ public class Yard {
          Domino D25 = new Domino(5, 5);
          Domino D26 = new Domino(5, 6);
 
-         Domino D27 = new Domino(6, 6);
+         Domino D27 = new Domino(6, 6);*/
 
         Collections.addAll(aList,D0,D1,D2,D3,D4,D5,D6,D7,D8,D9,D10,
     D11,D12,D13,D14,D15,D16,D17,D18,D19,D20,D21,D22,D23,D24,D25,D26,D27);

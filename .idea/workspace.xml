@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8a8b1d41-20ef-4656-a368-4305221436aa" name="Changes" comment="Making more progress on matching my dominos second element to the computers">
+    <list default="true" id="8a8b1d41-20ef-4656-a368-4305221436aa" name="Changes" comment="Getting dominos to match up much better this time. Still a coupld bugs to work through though">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dominos/Domino.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dominos/Domino.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/dominos/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dominos/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dominos/Yard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dominos/Yard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +95,12 @@
       <workItem from="1663282599276" duration="71000" />
       <workItem from="1663304555149" duration="4230000" />
       <workItem from="1663379584496" duration="27900000" />
-      <workItem from="1663441728040" duration="12589000" />
+      <workItem from="1663441728040" duration="13561000" />
+      <workItem from="1663529950503" duration="6403000" />
+      <workItem from="1663639131710" duration="15134000" />
+      <workItem from="1663692439629" duration="3574000" />
+      <workItem from="1663701772042" duration="4985000" />
+      <workItem from="1663711264541" duration="12536000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1662673414268</created>
@@ -180,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663408175035</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Getting dominos to match up much better this time. Still a coupld bugs to work through though">
+      <created>1663457148263</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1663457148263</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,7 +220,8 @@
     <MESSAGE value="Finally getting list of dominos to update properly. Now I need to create logic for the game." />
     <MESSAGE value="Still trying to get the computer to match my dominos" />
     <MESSAGE value="Making more progress on matching my dominos second element to the computers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Making more progress on matching my dominos second element to the computers" />
+    <MESSAGE value="Getting dominos to match up much better this time. Still a coupld bugs to work through though" />
+    <option name="LAST_COMMIT_MESSAGE" value="Getting dominos to match up much better this time. Still a coupld bugs to work through though" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -3,32 +3,32 @@ package dominos;
 import java.util.Comparator;
 
 public class Domino {
-    private int first;
-    private int second;
+    private int one;
+    private int two;
     
-    Domino(int first, int second) {
-        this.first = first;
-        this.second = second;
+    Domino(int one, int two) {
+        this.one = one;
+        this.two = two;
     }
 
     public void Swap() {
 
-        int temp = first;
-        first = second;
-        second = temp;
+        int temp = one;
+        one = two;
+        two = temp;
     }
 
-    public int getFirst() {
-        return this.first;
+    public int getOne() {
+        return this.one;
     }
 
-    public int getSecond() {
-        return this.second;
+    public int getTwo() {
+        return this.two;
     }
 
 
     public String toString() {
-        return "[" +first + "  " + second + "]";
+        return "[" + one + "  " + two + "]";
 
     }
 

@@ -3,19 +3,20 @@ package dominos;
 import java.sql.PseudoColumnUsage;
 import java.util.*;
 
-public class Main {
+import static java.lang.System.lineSeparator;
 
+public class Main {
 
     static List<Domino> myList = new ArrayList<>();
     static List<Domino> pList = new ArrayList<>();
-    static Deque<Domino> cList = new ArrayDeque<>();
-
+    static List<Domino> cList = new ArrayList<>();
     static Deque<Domino> pPlaceList = new ArrayDeque<>();
     static Deque<Domino> cPlaceList = new ArrayDeque<>();
 
+    static List<Domino> putDown = new ArrayList<>();
+
     static int first;
     static int second;
-
 
 
     public static void main(String[] args) {
@@ -30,9 +31,6 @@ public class Main {
         int sameNum = 7;
 
 
-        /*System.out.println(myYard.getRandomElement(myList, numElements));
-        System.out.println(myYard.getRandomElement(myList, sameNum));*/
-
         Scanner scnr = new Scanner(System.in);
         Scanner numScan = new Scanner(System.in);
 
@@ -43,175 +41,205 @@ public class Main {
 
         char input;
 
-        //comp.computerTray(myList, 7);
-
-
         System.out.println();
-
-        //size = myList.size();
-        //player.tray(myList, numElements);
 
 
         pList.addAll(player.tray(myList, numElements));
         cList.addAll(player.computerTray(myList, sameNum));
 
+        theGame(putDown);
+
+
         int addOne = 1;
 
-        //getDominoF(myList);
-
         while (!gameOver(myList)) {
+            String newLine = System.getProperty(lineSeparator());
 
             System.out.println("Computer has " + cList.size() + " dominos");
             System.out.println("Computer Tray" + cList);
             System.out.println("Boneyard contains " + myList.size() + " dominos");
             System.out.println();
-            System.out.println("    " + cPlaceList);
-            System.out.println(pPlaceList);
+
+            theGame(putDown);
+
             System.out.println();
-
-            // System.out.println(playerTrayList(pList, numScan));
-
-
-            System.out.println("Tray: " + pList);
+        System.out.println("Tray: " + pList);
 
 
             /*if(your turn) {
             then enter this switch statement*/
 
+        System.out.println("[p] Play Domino");
+        System.out.println("[d] Draw from boneyard");
+        System.out.println("[q] Quit");
 
-            System.out.println("[p] Play Domino");
-            System.out.println("[d] Draw from boneyard");
-            System.out.println("[q] Quit");
+        input = scnr.next().charAt(0);
 
-            input = scnr.next().charAt(0);
+        switch (input) {
 
-            switch (input) {
+            case 'p' -> {
+                if (playerTrayList(pList)) {
 
-                case 'p' -> {
-                     if (playerTrayList(pList)) {
-
-                         /*System.out.println("Rotate y/n");
-                         if(input != 'n') {
-                             for(Domino o : pPlaceList) {
-                                 o.g
-                             }
-                         }*/
-
-                        // getCompDom(cList, pPlaceList);
-                         //Working with this on plyaer Class
-                         //matching(one, two);
-                         //computerTrayList(cList);
-                         System.out.print("Dom 1 Element 1: ");
-                         myFirst(pPlaceList, cList);
-                         System.out.println();
-                         //System.out.println(pList.get(one.getFirst()));
-                     }
+                    System.out.print("Dom 1 Element 1: ");
+                    myFirst(putDown, cList);
+                    System.out.println();
+                    System.out.println("Your score is: " + trackScore(pPlaceList));
                 }
-                case 'd' -> {
-                    System.out.println("Drawing from Boneyard");
-                    pList.addAll(player.tray(myList, addOne)); //Working with this on player
-                    cList.addAll(player.computerTray(myList, addOne));
-                }
-                case 'q' -> System.exit(0);
-
             }
+            case 'd' -> {
+                System.out.println("Drawing from Boneyard");
+                pList.addAll(player.tray(myList, addOne)); //Working with this on player
+                cList.addAll(player.computerTray(myList, addOne));
+            }
+            case 'q' -> System.exit(0);
+
         }
     }
-
+}
 
 
     public static boolean playerTrayList(List<Domino> pList) {
         int i;
         char input;
 
+        /*Might need to change putDown back to pPlaceList*/
 
         System.out.println("Which Domino?");
         Scanner scanner = new Scanner(System.in);
         Scanner cScanner = new Scanner(System.in);
 
-            /*for (i = 0; i < pList.size(); i++) {
-                pList.get(i);
-            }*/
-            i = scanner.nextInt();
-            pPlaceList.add(pList.remove(i));
+            for (i = 0; i < pList.size(); i++) {
+                //pList.get(i);
 
-            System.out.println("Rotate y/n");
-            input = scanner.next().charAt(0);
-            if(input == 'y') {
-                for(Domino p : pPlaceList) {
-                    /*int one = p.getFirst();
-                    int two = p.getSecond();
-                    int temp = one;
-                    one = two;
-                    two = temp;*/
-
-                    p.Swap();
-
+                i = scanner.nextInt();
+                System.out.println("Left or right");
+                input = scanner.next().charAt(0);
+                if (input == 'l') {
+                    putDown.add(0, pList.remove(i));
+                } else if(input == 'r') {
+                    putDown.add(pList.remove(i));
                 }
 
+                break;
+                /*System.out.println("Rotate y/n");
+                if(input == 'y') {
+                    pList.get(i).Swap();
+                    //putDown.add(pList.remove(i));
+                }*/
+            }
+
+        System.out.println("Rotate y/n");
+        input = scanner.next().charAt(0);
+            if(input == 'y') {
+                for(Domino p: putDown) {
+                    p.Swap();
+                }
             }
 
         return true;
-
-
     }
 
+    public static boolean humanMove(List<Domino> putDown, List<Domino> pList) {
+        for(int k = 0; k < pList.size() - 1; k++) {
+            if(putDown.get(0).getOne() == pList.get(k).getOne() || (putDown.get(0).getOne() == pList.get(k).getTwo())) {
+                return true;
+            }
+            if(putDown.get(putDown.size() - 1).getTwo() == pList.get(k).getTwo() || putDown.get(putDown.size() - 1).getTwo() == pList.get(k).getOne()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public static boolean compMove(List<Domino> putDown, List<Domino> cList) {
+        for(int j = 0; j < cList.size() - 1; j++) {
+            if(putDown.get(0).getOne() == cList.get(j).getOne() || (putDown.get(0).getOne() == cList.get(j).getTwo())) {
+                return true;
+            }
+            if(putDown.get(putDown.size() - 1).getTwo() == cList.get(j).getTwo() || putDown.get(putDown.size() - 1).getTwo() == cList.get(j).getOne()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-   /* public static void computerTrayList(List<Domino> cList) {
-        int j;
-            Random rand = new Random();
-            int randIndex = rand.nextInt(cList.size());
-            cList.get(randIndex);
-            cPlaceList.add(cList.remove(randIndex));
+    public static void myFirst(List<Domino> putDown, List<Domino> cList) {
 
-    }*/
-
-
-    /*public static int getCompDom(List<Domino> cList, List<Domino> pPlaceList) {
-        int i;
-        for(Domino p : pPlaceList) {
-            for(i = 0; i < cList.size(); i++) {
-                 for (Domino c : cList) {
-                if (c.getFirst() == p.getSecond()) {
-                    cList.get(i).getSecond();
-                    cPlaceList.add(cList.remove(i));
+        if(compMove(putDown, cList)) {
+            for (int i = 0; i < cList.size() - 1; i++) {
+                if (cList.get(i).getOne() == putDown.get(0).getOne()) {
+                    cList.get(i).Swap();
+                    putDown.add(0, cList.remove(i));
+                } else if (cList.get(i).getTwo() == putDown.get(0).getOne()) {
+                    putDown.add(0, cList.remove(i));
+                } else if (putDown.get(putDown.size() - 1).getTwo() == cList.get(i).getOne()) {
+                    putDown.add(cList.remove(i));
+                } else if (putDown.get(putDown.size() - 1).getTwo() == cList.get(i).getTwo()) {
+                    cList.get(i).Swap();
+                    putDown.add(cList.remove(i));
                 }
-                }
+
             }
         }
 
-
-        return 0;
-        //return aList.get(i).getFirst();
-
-    }*/
-
-    public static void myFirst(Deque<Domino> pPlaceList, Deque<Domino> cList) {
-
-        for(Domino c : cList) {
-            //c.getFirst();
-            for(Domino p : pPlaceList) {
-                  System.out.print(" [" + p.getFirst() + "] ");
-                    if (c.getFirst() == p.getSecond()) {
-
+            /*for(Domino p : putDown) {
+                for(Domino c : cList) {
+                    if (c.getOne() == p.getTwo()) {
                         cList.remove(c);
-                        cPlaceList.add(c);
-                        return;
+                        putDown.add(c);
+                        return true;
+                    }
 
-                } else if(c.getFirst() != p.getSecond() && c.getSecond() == p.getSecond()) {
+                    if(c.getOne() == 0 || c.getTwo() == 0 || p.getOne() == 0 || p.getTwo() == 0) {
+                        cList.remove(c);
+                        putDown.add(c);
+                        return true;
+                    }
+
+
+                   if(c.getOne() != p.getTwo() && c.getTwo() == p.getTwo()) {
 
                         c.Swap();
                         cList.remove(c);
-                        cPlaceList.add(c);
-                        return;
-                    }
-                   // break;
+                        putDown.add(c);
+                        return true;
 
-            }
-            /*With this break above blocked out, it sort of
-            * works but i'll jump in increments of two sometimes three*/
+                    }
+                }
+
         }
+
+        return true;*/
+    }
+
+    public static void theGame(List<Domino> putDown) {
+
+        for(int i = 0; i < putDown.size(); i++) {
+            if (i % 2 == 0) {
+                System.out.print("[" + putDown.get(i).getOne() + "  " + putDown.get(i).getTwo() + "]");
+            }
+        }
+        System.out.println();
+        System.out.print("   ");
+            for(int i = 0; i < putDown.size(); i++) {
+            if(i % 2 == 1) {
+                System.out.print("[" + putDown.get(i).getOne() + "  " + putDown.get(i).getTwo() + "]");
+            }
+        }
+            System.out.println();
+    }
+    public static int trackScore(Deque<Domino> pPlaceList) {
+        int playCount = 0;
+        int p1;
+        int p2;
+        for(Domino p : pPlaceList) {
+            p1 = p.getOne();
+            p2 = p.getTwo();
+
+            playCount = p1 + p2;
+            playCount++;
+        }
+        return playCount;
     }
 
 
@@ -222,16 +250,5 @@ public class Main {
         return myList.isEmpty();
     }
 
-    /*@Override
-    public int compare(Domino one, Domino two) {
-        for (int i = 0; i < cList.size(); i++) {
-            cList.get(i);
 
-            if (two.getFirst() == one.getSecond()) {
-                cPlaceList.add(cList.remove(i));
-                return 0;
-            }
-        }
-            return -1;
-    }*/
 }
