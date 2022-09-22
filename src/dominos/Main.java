@@ -1,31 +1,22 @@
 package dominos;
 
-import java.sql.PseudoColumnUsage;
 import java.util.*;
 
-import static java.lang.System.lineSeparator;
 
 public class Main {
 
     static List<Domino> myList = new ArrayList<>();
     static List<Domino> pList = new ArrayList<>();
     static List<Domino> cList = new ArrayList<>();
-    static Deque<Domino> pPlaceList = new ArrayDeque<>();
-    static Deque<Domino> cPlaceList = new ArrayDeque<>();
 
     static List<Domino> putDown = new ArrayList<>();
 
     static Player player = new Player();
-    static int first;
-    static int second;
+
 
 
     public static void main(String[] args) {
 
-        /* Here I'm just testing whether or not I can pull 7 random dominos from my yard class that has
-         * the addDom() method. I can but instead of giving me the number of each domino it's just giving
-         * me the address of them. So it is sort of working but I need to find a way to make it give me their
-         * numbers. */
 
         Yard myYard = new Yard(myList);
         int numElements = 7;
@@ -35,30 +26,22 @@ public class Main {
         Scanner scnr = new Scanner(System.in);
 
 
-
-        Player comp = new Player();
-
         System.out.println("Dominos!");
 
         char input;
 
-        System.out.println();
-
-
         pList.addAll(player.tray(myList, numElements));
         cList.addAll(player.computerTray(myList, sameNum));
 
-       // theGame(putDown);
+
         System.out.println();
-
-
         int addOne = 1;
 
-        while (!gameOver(myList)) {
-            String newLine = System.getProperty(lineSeparator());
+        /*The loop where the main game
+        * selections occur*/
+        while (!gameOver()) {
 
             System.out.println("Computer has " + cList.size() + " dominos");
-            System.out.println("Computer Tray" + cList);
             System.out.println("Boneyard contains " + myList.size() + " dominos");
             System.out.println();
 
@@ -66,10 +49,8 @@ public class Main {
             System.out.println();
 
             System.out.println("Tray: " + pList);
-
-
-            /*if(your turn) {
-            then enter this switch statement*/
+            System.out.println("Pick 0 - 6");
+            System.out.println();
 
             System.out.println("[p] Play Domino");
             System.out.println("[d] Draw from boneyard");
@@ -82,56 +63,72 @@ public class Main {
 
                 case 'p' -> {
                     if (playerTrayList(pList)) {
-
-
-                        myFirst(putDown, cList);
-                        System.out.println();
-                        System.out.println("Your score is: " + trackScore(pPlaceList));
+                      myFirst(putDown, cList);
+                    System.out.println();
+                    trackScore(pList);
                     }
                 }
                 case 'd' -> {
-                    System.out.println("Drawing from Boneyard");
-                    pList.addAll(player.tray(myList, addOne)); //Working with this on player
+                    if(myList.isEmpty()) {
+                        System.out.println("BONEYARD IS EMPTY CAN'T DRAW");
+                    }
+                    if(humanMove(putDown, pList)) {
+                        System.out.println("\n");
+                        System.out.println("YOU HAVE A VALID MOVE CAN'T DRAW");
+                    }
+                    else if(!humanMove(putDown, pList) && !myList.isEmpty()) {
+                        System.out.println("Drawing from Boneyard");
+                        pList.addAll(player.tray(myList, addOne));
+                        trackScore(pList);
+                    }
                 }
                 case 'q' -> System.exit(0);
 
+                default -> System.out.println("You have entered incorrectly try again");
+
             }
             System.out.println();
+            if(myList.isEmpty() && trackComp(cList) < trackScore(pList)) {
+                System.out.println("COMPUTER WINS!");
+                System.exit(0);
+            }
+             if (myList.isEmpty() && trackScore(pList) < trackComp(cList)){
+                System.out.println("HUMAN WINS");
+                System.exit(0);
+            }
         }
     }
 
 
+    /*This is the method that allows the human player to actually
+    * choose what domino they want, and lets them place it*/
     public static boolean playerTrayList(List<Domino> pList) {
         int i;
         char input;
 
-
-        /*Might need to change putDown back to pPlaceList*/
 
         System.out.println("Which Domino?");
         Scanner scanner = new Scanner(System.in);
         Scanner numScan = new Scanner(System.in);
         Scanner nextScan =  new Scanner(System.in);
 
-
-
-
-            for (i = 0; i < pList.size() - 1; i++) {
-                //pList.get(i);
+            for (i = 0; i < pList.size(); i++) {
 
                 i = scanner.nextInt();
+
                 System.out.println("Left or right");
                 input = scanner.next().charAt(0);
 
                 if (input == 'l') {
-                    System.out.println("Rotate y/n");
-                    input = numScan.next().charAt(0);
-                    if (input == 'y') {
-                        pList.get(i).Swap();
-                        putDown.add(0, pList.remove(i));
-                    } else {
-                        putDown.add(0, pList.remove(i));
-                    }
+                        System.out.println("Rotate y/n");
+                        input = numScan.next().charAt(0);
+
+                        if (input == 'y') {
+                            pList.get(i).Swap();
+                            putDown.add(0, pList.remove(i));
+                        } else {
+                            putDown.add(0, pList.remove(i));
+                     }
                 }
                 if (input == 'r') {
                     System.out.println("Rotate y/n");
@@ -141,35 +138,36 @@ public class Main {
                         putDown.add(pList.remove(i));
                     } else {
                         putDown.add(pList.remove(i));
-                    }
+                   }
                 }
                 if(!humanMove(putDown, pList)) {
-                    System.out.println("No valid moves draw");
+                    System.out.println();
+                    System.out.println("No valid moves, draw from boneyard");
                 }
-                break;
-
+             break;
         }
-
-
         return true;
     }
 
+    /*Checks to see a move you the player makes is valid or not*/
     public static boolean humanMove(List<Domino> putDown, List<Domino> pList) {
         int addOne = 1;
         for(int k = 0; k < pList.size() - 1; k++) {
-            if(putDown.get(0).getOne() == pList.get(k).getOne()) {
+            if(putDown.get(0).getOne() == pList.get(k).getOne() || putDown.get(0).getOne() == 0 || pList.get(k).getOne() == 0) {
                 return true;
-            } else if (putDown.get(0).getOne() == pList.get(k).getTwo()) {
+            } else if (putDown.get(0).getOne() == pList.get(k).getTwo() || putDown.get(0).getOne() == 0 || pList.get(k).getTwo() == 0) {
                 return true;
-            } else if (putDown.get(putDown.size() - 1).getTwo() == pList.get(k).getOne()) {
+            } else if (putDown.get(putDown.size() - 1).getTwo() == pList.get(k).getOne() || putDown.get(putDown.size() - 1).getTwo() == 0 || pList.get(k).getOne() == 0) {
                 return true;
-            } else if(putDown.get(putDown.size() - 1).getTwo() == pList.get(k).getTwo()) {
+            } else if(putDown.get(putDown.size() - 1).getTwo() == pList.get(k).getTwo() || putDown.get(putDown.size() - 1).getTwo() == 0 || pList.get(k).getTwo() == 0) {
                 return true;
             }
         }
         return false;
     }
 
+    /*This method checks if any domino numbers match any of those in the play area,
+    * if they do, then it returns true. If not then false.*/
     public static boolean compMove(List<Domino> putDown, List<Domino> cList) {
         for(int j = 0; j < cList.size() - 1; j++) {
             if(putDown.get(0).getOne() == cList.get(j).getOne() || putDown.get(0).getOne() == 0 || cList.get(j).getOne() == 0) {
@@ -188,11 +186,15 @@ public class Main {
         return false;
     }
 
+    /*This method compares the numbers of each domino in the
+    * computer tray and checks whether they match with another
+    * domino already in the main play area. If so, it will place them
+    * in the main game area.*/
     public static void myFirst(List<Domino> putDown, List<Domino> cList) {
         int addOne = 1;
-        if(!compMove(putDown, cList)) {
+        while(!compMove(putDown, cList) && !myList.isEmpty()) {
             cList.addAll(player.computerTray(myList, addOne));
-        } else {
+        }
             for (int i = 0; i < cList.size() - 1; i++) {
                 if (putDown.get(0).getOne() == cList.get(i).getOne() ||  putDown.get(0).getOne() == 0 || cList.get(i).getOne() == 0) {
                     cList.get(i).Swap();
@@ -200,30 +202,30 @@ public class Main {
                     return;
                 } else if (putDown.get(0).getOne() == cList.get(i).getTwo() ||  putDown.get(0).getOne() == 0 || cList.get(i).getTwo() == 0) {
                     putDown.add(0, cList.remove(i));
+
                     return;
-                } else if (putDown.get(putDown.size() - 1).getTwo() == cList.get(i).getOne() ||  putDown.get(putDown.size() - 1).getOne() == 0 || cList.get(i).getOne() == 0) {
+                } else if (putDown.get(putDown.size() - 1).getTwo() == cList.get(i).getOne() ||  putDown.get(putDown.size() - 1).getTwo() == 0 || cList.get(i).getOne() == 0) {
                     putDown.add(cList.remove(i));
+
                     return;
-                } else if (putDown.get(putDown.size() - 1).getTwo() == cList.get(i).getTwo() ||  putDown.get(putDown.size() - 1).getOne() == 0 || cList.get(i).getTwo() == 0) {
+                } else if (putDown.get(putDown.size() - 1).getTwo() == cList.get(i).getTwo() ||  putDown.get(putDown.size() - 1).getTwo() == 0 || cList.get(i).getTwo() == 0) {
                     cList.get(i).Swap();
                     putDown.add(cList.remove(i));
+
                     return;
                 }
-
-                System.out.println("Computer is placing " + "[" + putDown.get(i).getOne() + " " + putDown.get(i).getTwo());
-
             }
         }
 
-    }
-
+    /*This method takes the selected domino's from both the human
+    * and the computer players and puts them into a list. This method
+    * then prints them out in a staggered fashion.*/
     public static void theGame(List<Domino> putDown) {
 
         for(int i = 0; i < putDown.size(); i++) {
             if (i % 2 == 0) {
                 System.out.print("[" + putDown.get(i).getOne() + "  " + putDown.get(i).getTwo() + "]");
             }
-            i++;
         }
         System.out.println();
         System.out.print("   ");
@@ -234,26 +236,34 @@ public class Main {
         }
             System.out.println();
     }
-    public static int trackScore(Deque<Domino> pPlaceList) {
-        int playCount = 0;
-        int p1;
-        int p2;
-        for(Domino p : pPlaceList) {
-            p1 = p.getOne();
-            p2 = p.getTwo();
 
-            playCount = p1 + p2;
-            playCount++;
+    /*Adds up left and right number of each domino in
+    * the players tray*/
+    public static int trackScore(List<Domino> pList) {
+        int playCount = 0;
+
+        for (Domino p : pList) {
+            playCount += p.getOne() + p.getTwo();
+        }
+        return playCount;
+    }
+
+    /*Adds up left and right numbers of each domino
+    * in the computers tray*/
+    public static int trackComp(List<Domino> cList) {
+        int playCount = 0;
+        for(Domino c : cList) {
+            playCount += c.getOne() + c.getTwo();
         }
         return playCount;
     }
 
 
-    /*This method will determine if the boneyard is empty.
-     * If it is, the game will end. I need more fucntionallity in here
-     * such as both players choose not to put down dominos*/
-    public static boolean gameOver(List<Domino> myList) {
-        return myList.isEmpty();
+    /*This method is purely for the sake of keeping
+    * the while loop running*/
+    public static boolean gameOver() {
+
+            return false;
     }
 
 

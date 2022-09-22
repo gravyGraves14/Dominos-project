@@ -6,15 +6,11 @@ import java.util.Scanner;
 
 public class Player {
 
-    int first, second;
-
     List<Domino> pList = new ArrayList<>();
 
     Yard pYard = new Yard(pList);
 
-
-
-    /*Figure this out before moving on*/
+    /*Where the domino's are randomly generated for the human tray*/
     public List<Domino> tray(List<Domino> pList, int amount) {
         List<Domino> p1L = new ArrayList<>();
         p1L.addAll(pYard.getRandomElement(pList, amount));
@@ -22,6 +18,7 @@ public class Player {
         return p1L;
     }
 
+    /*Where the dominos are generated for the computer tray*/
     public List<Domino> computerTray(List<Domino> pList, int amount) {
 
         List<Domino> cList = new ArrayList<>();

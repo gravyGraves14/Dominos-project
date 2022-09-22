@@ -6,9 +6,6 @@ public class Yard {
 
     public static List<Domino> aList = new ArrayList<>();
 
-    static int first;
-    static int second;
-
     static Domino D0 = new Domino(0, 0);
     static Domino D1 = new Domino(0, 1);
     static Domino D2 = new Domino(0, 2);
@@ -53,7 +50,7 @@ public class Yard {
 
 }
     
-
+    /*This method randomly generates seven domino objects form the list*/
     public List<Domino> getRandomElement(List<Domino> aList, int totalItems) {
 
         Random rand = new Random();
