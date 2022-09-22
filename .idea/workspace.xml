@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8a8b1d41-20ef-4656-a368-4305221436aa" name="Changes" comment="Game is pretty much working in its entirety now.">
+    <list default="true" id="8a8b1d41-20ef-4656-a368-4305221436aa" name="Changes" comment="Domino's Game">
+      <change afterPath="$PROJECT_DIR$/Dominos.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dominos/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dominos/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dominos/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dominos/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dominos/Yard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/dominos/Yard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,15 +33,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/home/gravy/dominosproject/Dominos",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
-  <component name="RunManager" selected="Application.Main">
+}]]></component>
+  <component name="RunManager" selected="JAR Application.Dominos.jar">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dominos.Main" />
       <module name="Dominos" />
@@ -69,8 +72,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Dominos.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/Dominos_jar/Dominos.jar" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JAR Application.Dominos.jar" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.Yard" />
       </list>
@@ -104,7 +112,7 @@
       <workItem from="1663711264541" duration="29890000" />
       <workItem from="1663778016768" duration="11060000" />
       <workItem from="1663799180307" duration="2894000" />
-      <workItem from="1663811006596" duration="5431000" />
+      <workItem from="1663811006596" duration="6116000" />
     </task>
     <task id="LOCAL-00001" summary="Initial Commit">
       <created>1662673414268</created>
@@ -211,7 +219,14 @@
       <option name="project" value="LOCAL" />
       <updated>1663740703397</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Domino's Game">
+      <created>1663816466165</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1663816466165</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,7 +256,8 @@
     <MESSAGE value="Getting dominos to match up much better this time. Still a coupld bugs to work through though" />
     <MESSAGE value="Computer is putting down correct matching dominos. Only problem is that the whole list keeps getting swapped." />
     <MESSAGE value="Game is pretty much working in its entirety now." />
-    <option name="LAST_COMMIT_MESSAGE" value="Game is pretty much working in its entirety now." />
+    <MESSAGE value="Domino's Game" />
+    <option name="LAST_COMMIT_MESSAGE" value="Domino's Game" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
