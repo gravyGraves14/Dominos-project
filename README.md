@@ -1,3 +1,6 @@
+Only thing I'm missing for this game is the actual GUI. Just have the console
+version.
+
 Game is player vs computer matching up domino numbers. The goal for both the player and the computer
 is to have the least amount of dominos by the end of the game session.
 - If both the computer and the human have taken all the dominos out of the boneyard, then the game
